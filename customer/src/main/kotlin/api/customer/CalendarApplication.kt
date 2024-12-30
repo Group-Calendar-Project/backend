@@ -1,16 +1,14 @@
-package com.gc.api.customer
+package api.customer
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 
 @SpringBootApplication(
   scanBasePackages = [
-    "com.gc.common", "com.gc.api.customer"
-  ]
-)
-@EnableMongoRepositories(
-  basePackages = ["com.gc.common.adapter.out.persistence.jpa"]
+    "common", "api.customer"
+  ],
+  exclude = [DataSourceAutoConfiguration::class]
 )
 class CalendarApplication
 

@@ -1,4 +1,4 @@
-package com.gc.common.adapter.out.persistence.document
+package common.adapter.out.persistence.document
 
 import lombok.AllArgsConstructor
 import lombok.Getter
