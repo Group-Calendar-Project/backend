@@ -1,8 +1,8 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.jetbrains.kotlin.plugin.lombok") version "1.9.25"
-    idea
+    val kotlinVersion = "1.9.25"
+    kotlin("plugin.lombok") version kotlinVersion
 //    id("org.jetbrains.kotlin.plugin.jpa") version "1.9.25"
 }
 
@@ -26,12 +26,12 @@ dependencies {
     implementation("org.projectlombok:lombok")
 
     // querydsl
-    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
-    implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("jakarta.annotation:jakarta.annotation-api")
-    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
-    kapt("org.springframework.boot:spring-boot-configuration-processor")
+//    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+//    implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
+//    implementation("jakarta.persistence:jakarta.persistence-api")
+//    implementation("jakarta.annotation:jakarta.annotation-api")
+//    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+//    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     // security
 //    implementation("org.springframework.boot:spring-boot-starter-security")
@@ -46,13 +46,5 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
-}
-
-idea {
-    module{
-        val kaptMain = file("build/generated/source/kapt/main")
-        sourceDirs.add(kaptMain)
-        generatedSourceDirs.add(kaptMain)
-    }
+    jvmToolchain(17)
 }
