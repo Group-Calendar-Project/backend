@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.auditing.DateTimeProvider
 import org.springframework.data.mongodb.MongoDatabaseFactory
-import org.springframework.data.mongodb.MongoTransactionManager
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.convert.DbRefResolver
@@ -72,8 +71,8 @@ class MongoDBConfig: AbstractMongoClientConfiguration() {
   }
 
   // 트랜잭션
-  @Bean
-  fun transactionManager(mongoDatabaseFactory: MongoDatabaseFactory): MongoTransactionManager {
-    return MongoTransactionManager(mongoDatabaseFactory)
-  }
+//  @Bean
+//  fun transactionManager(mongoDatabaseFactory: MongoDatabaseFactory): MongoTransactionManager {
+//    return MongoTransactionManager(mongoDatabaseFactory)
+//  }
 }
