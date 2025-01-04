@@ -34,6 +34,8 @@ dependencies {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
     implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    testImplementation("org.springframework.security:spring-security-test")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
 }
