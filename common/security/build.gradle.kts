@@ -1,21 +1,16 @@
-plugins {
-    kotlin("jvm")
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
 }
-
-group = "com.gc"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
+tasks.named<Jar>("jar") {
+    enabled = false
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
+    implementation(project(":storage:document"))
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
