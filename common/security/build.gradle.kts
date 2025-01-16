@@ -9,7 +9,7 @@ tasks.named<Jar>("jar") {
 
 dependencies {
     implementation(project(":storage:document"))
-    implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
+//    implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
 
     // security
     implementation("org.springframework.boot:spring-boot-starter-security")
