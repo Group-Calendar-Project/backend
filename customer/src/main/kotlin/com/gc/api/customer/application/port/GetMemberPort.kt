@@ -1,4 +1,4 @@
-package api.customer.application.port
+package com.gc.api.customer.application.port
 
 interface GetMemberPort {
 

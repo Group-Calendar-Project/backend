@@ -1,6 +1,6 @@
-package api.customer.adapter.`in`.rest
+package com.gc.api.customer.adapter.`in`.rest
 
-import api.customer.adapter.out.repository.GetMemberRepository
+import com.gc.api.customer.adapter.out.repository.GetMemberRepository
 import common.adapter.out.persistence.document.MemberDocument
 import common.adapter.out.persistence.nosql.MemberMongoRepository
 import org.springframework.web.bind.annotation.GetMapping

@@ -1,4 +1,4 @@
-package api.customer.framework.security
+package com.gc.api.customer.framework.security
 
 import org.springframework.security.core.GrantedAuthority
 

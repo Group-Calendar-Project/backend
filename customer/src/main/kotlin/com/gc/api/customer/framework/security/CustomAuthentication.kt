@@ -1,4 +1,4 @@
-package api.customer.framework.security
+package com.gc.api.customer.framework.security
 
 import common.adapter.out.persistence.document.MemberDocument
 import org.springframework.security.core.Authentication

@@ -1,4 +1,4 @@
-package api.customer.framework.security
+package com.gc.api.customer.framework.security
 
 object JwtConstant {
   const val BEARER: String = "Bearer"

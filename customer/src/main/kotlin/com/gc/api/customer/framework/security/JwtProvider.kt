@@ -1,6 +1,6 @@
-package api.customer.framework.security
+package com.gc.api.customer.framework.security
 
-import api.customer.application.service.MemberService
+import com.gc.api.customer.application.service.MemberService
 import common.framework.utils.logger
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys
