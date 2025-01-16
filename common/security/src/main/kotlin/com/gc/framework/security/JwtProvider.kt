@@ -1,7 +1,6 @@
 package com.gc.framework.security
 
-import com.gc.api.customer.application.service.MemberService
-import common.framework.utils.logger
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
@@ -10,10 +9,13 @@ import java.time.Duration
 import java.util.*
 import javax.crypto.SecretKey
 
+private val logger = KotlinLogging.logger {}
+
 @Component
 class JwtProvider(
   @Value("\${jwt.secret}") secretKey: String,
-  private val memberService: MemberService,
+  // TODO: storage:document 구현 후 사용
+//  private val memberService: MemberService,
 ) {
 
   private val secretKey: SecretKey = Keys.hmacShaKeyFor(secretKey.toByteArray())
@@ -47,16 +49,16 @@ class JwtProvider(
     } catch (e: Exception) {
       when (e) {
         is SecurityException, is MalformedJwtException -> {
-          logger.info("Invalid JWT", e)
+          logger.info {"Invalid JWT ${e}" }
         }
         is ExpiredJwtException -> {
-          logger.info("Expired JWT", e)
+          logger.info {"Expired JWT ${e}"}
         }
         is UnsupportedJwtException -> {
-          logger.info("Unsupported JWT", e)
+          logger.info {"Unsupported JWT ${e}"}
         }
         is IllegalArgumentException -> {
-          logger.info("JWT claims string is empty", e)
+          logger.info {"JWT claims string is empty ${e}"}
         }
       }
       false

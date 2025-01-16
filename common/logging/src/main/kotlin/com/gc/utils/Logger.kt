@@ -1,5 +1,3 @@
-package com.gc.utils
-
-import mu.KotlinLogging
-
-val logger = KotlinLogging.logger {}
+//package com.gc.utils
+//
+//private val logger = io.github.oshai.kotlinlogging.KotlinLogging.logger {}

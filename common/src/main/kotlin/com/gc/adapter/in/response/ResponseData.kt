@@ -1,4 +1,4 @@
-package common.adapter.`in`.response
+package com.gc.adapter.`in`.response
 
 data class ResponseData<T>(
   val code: String,

@@ -8,11 +8,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication(
   scanBasePackages = [
-    "common", "com.gc.api.customer"
+    "com.gc", "com.gc.api.customer"
   ],
   exclude = [DataSourceAutoConfiguration::class]
 )
-@EnableMongoRepositories(basePackages = ["common.adapter.out.persistence.nosql"])
+@EnableMongoRepositories(basePackages = ["com.gc.adapter.out.infra.persistence"])
 @EnableMongoAuditing(dateTimeProviderRef = "mongoAuditingDateTimeProvider")
 class CalendarApplication
 

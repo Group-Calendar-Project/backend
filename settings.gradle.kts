@@ -4,9 +4,9 @@ plugins {
 rootProject.name = "calendar"
 include("common")
 include("customer")
-include("message")
-include("storage")
-include("client")
+//include("message")
+//include("storage")
+//include("client")
 include("common:logging")
 findProject(":common:logging")?.name = "logging"
 include("common:monitoring")
