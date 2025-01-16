@@ -1,21 +1,12 @@
-plugins {
-    kotlin("jvm")
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
 }
-
-group = "com.gc"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
+tasks.named<Jar>("jar") {
+    enabled = false
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 }
