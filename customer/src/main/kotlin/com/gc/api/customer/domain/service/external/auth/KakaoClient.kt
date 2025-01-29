@@ -45,16 +45,14 @@ class KakaoClient(
       KakaoOAuthToken::class.java
     )
 
-    println(response)
     return response.body
 
   }
 
-  //
   fun requestProfile(kakaoOAuthToken: KakaoOAuthToken): KakaoProfile? {
     val headers = HttpHeaders().apply {
       add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-      add("Authorization", "Bearer " + kakaoOAuthToken.access_token)
+      add("Authorization", "Bearer " + kakaoOAuthToken.accessToken)
     }
 
     val httpEntity = HttpEntity<Void>(headers)
@@ -65,7 +63,6 @@ class KakaoClient(
       KakaoProfile::class.java
     )
 
-    println(response)
     return response.body
   }
 
