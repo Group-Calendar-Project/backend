@@ -4,26 +4,24 @@ import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.
 import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverProfile
 import com.gc.api.customer.adapter.out.external.social_login.kakao.KakaoClient
 import com.gc.api.customer.adapter.out.external.social_login.naver.NaverClient
-import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 
 @Service
-@RequiredArgsConstructor
 class AuthService(
-  val kakaoClient: KakaoClient,
-  val naverClient: NaverClient,
+  private val kakaoClient: KakaoClient,
+  private val naverClient: NaverClient,
 ) {
 
-  fun kakaoLogin(accessCode: String?): KakaoProfile {
+  fun kakaoLogin(accessCode: String): KakaoProfile {
 
-    val kakaoOAuthToken = kakaoClient.getAuthorizationToken(accessCode)
+    val kakaoOAuthToken = kakaoClient.getAccessToken(accessCode)
     val requestProfile = kakaoClient.getProfile(kakaoOAuthToken)
 
     return requestProfile
   }
 
-  fun naverLogin(accessCode: String?): NaverProfile {
-    val naverOAuthToken = naverClient.getAuthorizationToken(accessCode)
+  fun naverLogin(accessCode: String): NaverProfile {
+    val naverOAuthToken = naverClient.getAccessToken(accessCode)
     val naverProfile = naverClient.getProfile(naverOAuthToken)
 
     return naverProfile

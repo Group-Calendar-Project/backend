@@ -13,13 +13,13 @@ class AuthController(
 ) {
 
   @GetMapping("/login/kakao")
-  fun kakaoLogin(@RequestParam("code") accessCode: String?) : KakaoProfile? {
+  fun kakaoLogin(@RequestParam("code") accessCode: String) : KakaoProfile? {
 
     return authService.kakaoLogin(accessCode)
   }
 
   @GetMapping("/login/naver")
-  fun naverLogin(@RequestParam("code") accessCode: String?) : NaverProfile? {
+  fun naverLogin(@RequestParam("code") accessCode: String) : NaverProfile? {
 
     return authService.naverLogin(accessCode)
   }

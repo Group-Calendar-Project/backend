@@ -4,6 +4,6 @@ import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthP
 import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthToken
 
 interface SocialLoginPort {
-  fun getAuthorizationToken(accessCode: String?): OAuthToken
+  fun getAccessToken(accessCode: String): OAuthToken
   fun getProfile(oAuthToken: OAuthToken): OAuthProfile
 }
