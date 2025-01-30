@@ -1,5 +1,10 @@
-package com.gc.api.customer.domain.service.external.auth
+package com.gc.api.customer.adapter.out.external.social_login.kakao
 
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthToken
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.KakaoOAuthToken
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.KakaoProfile
+import com.gc.api.customer.application.port.out.external.social_login.SocialLoginPort
+import common.exception.CustomBadRequestException
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
@@ -13,16 +18,13 @@ import org.springframework.web.client.RestTemplate
 @Component
 @RequiredArgsConstructor
 class KakaoClient(
-  @Value("\${kakao.auth.client}") client: String,
-  @Value("\${kakao.auth.redirect}") redirect: String,
+  @Value("\${kakao.auth.client}") private val client: String,
+  @Value("\${kakao.auth.redirect}") private val redirect: String,
   private val restTemplate: RestTemplate,
-) {
+): SocialLoginPort {
 
-  val kakaoClient = client
-  val kakaoRedircet = redirect
+  override fun getAuthorizationToken(accessCode: String?): KakaoOAuthToken {
 
-  // 인가 코드 요청
-  fun requestAuthorizationToken(accessCode: String?): KakaoOAuthToken? {
     // TODO
     val headers = HttpHeaders().apply {
       add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -31,8 +33,8 @@ class KakaoClient(
     // TODO
     val params = LinkedMultiValueMap<String, String>().apply {
       add("grant_type", "authorization_code")
-      add("client_id", kakaoClient)
-      add("redirect_uri", kakaoRedircet)
+      add("client_id", client)
+      add("redirect_uri", redirect)
       add("code", accessCode)
     }
 
@@ -45,14 +47,14 @@ class KakaoClient(
       KakaoOAuthToken::class.java
     )
 
-    return response.body
-
+    return response.body ?: throw CustomBadRequestException("잘못된 인가코드 입니다.")
   }
 
-  fun requestProfile(kakaoOAuthToken: KakaoOAuthToken): KakaoProfile? {
+  override fun getProfile(oAuthToken: OAuthToken): KakaoProfile {
+
     val headers = HttpHeaders().apply {
       add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-      add("Authorization", "Bearer " + kakaoOAuthToken.accessToken)
+      add("Authorization", "Bearer " + oAuthToken.accessToken)
     }
 
     val httpEntity = HttpEntity<Void>(headers)
@@ -63,7 +65,8 @@ class KakaoClient(
       KakaoProfile::class.java
     )
 
-    return response.body
+    return response.body ?: throw CustomBadRequestException("잘못된 인증코드 입니다.")
   }
+
 
 }

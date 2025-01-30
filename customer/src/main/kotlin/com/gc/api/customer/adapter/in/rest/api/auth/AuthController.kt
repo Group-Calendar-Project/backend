@@ -1,8 +1,8 @@
-package com.gc.api.customer.adapter.`in`.rest.auth
+package com.gc.api.customer.adapter.`in`.rest.api.auth
 
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.KakaoProfile
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverProfile
 import com.gc.api.customer.domain.service.auth.AuthService
-import com.gc.api.customer.domain.service.external.auth.KakaoProfile
-import com.gc.api.customer.domain.service.external.auth.NaverProfile
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -21,7 +21,6 @@ class AuthController(
   @GetMapping("/login/naver")
   fun naverLogin(@RequestParam("code") accessCode: String?) : NaverProfile? {
 
-    println(accessCode)
     return authService.naverLogin(accessCode)
   }
 }

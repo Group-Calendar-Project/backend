@@ -1,10 +1,11 @@
-package com.gc.api.customer.domain.service.external.auth
+package com.gc.api.customer.adapter.out.external.dto.response.social_login.naver
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthProfile
 
 data class NaverProfile(
   val response: NaverProfileResponse,
-)
+) : OAuthProfile
 
 data class NaverProfileResponse(
   @JsonProperty("id") val id: String,

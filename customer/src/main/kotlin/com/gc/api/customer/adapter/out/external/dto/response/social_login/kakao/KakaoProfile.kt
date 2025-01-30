@@ -1,10 +1,12 @@
-package com.gc.api.customer.domain.service.external.auth
+package com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao
+
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthProfile
 
 data class KakaoProfile(
   val id: Long,
   val connected_at: String,
   val kakao_account: KakaoAccount,
-)
+) : OAuthProfile
 
 data class KakaoAccount(
   val email: String,

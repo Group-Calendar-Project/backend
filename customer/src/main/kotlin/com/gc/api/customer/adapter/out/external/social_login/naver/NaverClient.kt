@@ -1,5 +1,10 @@
-package com.gc.api.customer.domain.service.external.auth
+package com.gc.api.customer.adapter.out.external.social_login.naver
 
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthToken
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverOAuthToken
+import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverProfile
+import com.gc.api.customer.application.port.out.external.social_login.SocialLoginPort
+import common.exception.CustomBadRequestException
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
@@ -13,17 +18,12 @@ import org.springframework.web.client.RestTemplate
 @Service
 @RequiredArgsConstructor
 class NaverClient(
-  @Value("\${naver.auth.client_id}") clientId: String,
-  @Value("\${naver.auth.client_secret}") clientSecret: String,
+  @Value("\${naver.auth.client_id}") private val clientId: String,
+  @Value("\${naver.auth.client_secret}") private val clientSecret: String,
   private val restTemplate: RestTemplate,
-) {
+): SocialLoginPort {
 
-  val naverClientId = clientId
-  val naverClientSecret = clientSecret
-
-
-  fun requestAuthorizationToken(accessToken: String?): NaverOAuthToken? {
-
+  override fun getAuthorizationToken(accessCode: String?): NaverOAuthToken {
     val headers = HttpHeaders().apply {
       add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     }
@@ -31,9 +31,9 @@ class NaverClient(
     // TODO
     val params = LinkedMultiValueMap<String, String>().apply {
       add("grant_type", "authorization_code")
-      add("client_id", naverClientId)
-      add("client_secret", naverClientSecret)
-      add("code", accessToken)
+      add("client_id", clientId)
+      add("client_secret", clientSecret)
+      add("code", accessCode)
       add("state", "STATE_STRING")
     }
 
@@ -46,12 +46,12 @@ class NaverClient(
       NaverOAuthToken::class.java
     )
 
-    return response.body
+    return response.body ?: throw CustomBadRequestException("잘못된 인가 코드입니다.")
   }
 
-  fun requestProfile(naverOAuthToken: NaverOAuthToken): NaverProfile? {
+  override fun getProfile(oAuthToken: OAuthToken): NaverProfile {
     val headers = HttpHeaders().apply {
-      add("Authorization", "Bearer " + naverOAuthToken.accessToken)
+      add("Authorization", "Bearer " + oAuthToken.accessToken)
     }
 
     val httpEntity = HttpEntity<Void>(headers)
@@ -62,6 +62,7 @@ class NaverClient(
       NaverProfile::class.java
     )
 
-    return response.body
+    return response.body ?: throw CustomBadRequestException("잘못된 인증 코드입니다.")
   }
+
 }
