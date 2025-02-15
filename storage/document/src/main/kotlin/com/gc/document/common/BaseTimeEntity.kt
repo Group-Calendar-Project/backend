@@ -11,9 +11,11 @@ import java.time.LocalDateTime
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseTimeEntity {
 
-  @get:CreatedDate
-  open val createdAt: LocalDateTime = LocalDateTime.now()
+  @CreatedDate
+  var createdAt: LocalDateTime = LocalDateTime.now()
+    protected set
 
   @LastModifiedDate
-  open var updatedAt: LocalDateTime = LocalDateTime.now()
+  var updatedAt: LocalDateTime = LocalDateTime.now()
+    protected set
 }
