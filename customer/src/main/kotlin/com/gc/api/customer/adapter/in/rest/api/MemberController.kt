@@ -1,8 +1,8 @@
 package com.gc.api.customer.adapter.`in`.rest.api
 
+import com.gc.api.customer.adapter.out.persistence.GetMemberRepository
 import com.gc.document.member.MemberDocument
 import com.gc.document.member.MemberMongoRepository
-import com.gc.api.customer.adapter.out.persistence.GetMemberRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
@@ -16,12 +16,14 @@ class MemberController(
   @PostMapping
   fun saveMember(): String {
     val newMember = MemberDocument(
-      userName = "kylo",
+      nickname = "kylo",
       email = "kylo@kakao.com",
       isActive = true,
       isAdmin = true,
       profile = "kakao",
-      oauthProvider = "kakao")
+      oauthProvider = "kakao",
+      isNotificationEnabled = true,
+      isMondayStart = false)
     val saveMember = memberMongoRepository.save(newMember)
     return saveMember.id!!
   }

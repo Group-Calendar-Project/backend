@@ -12,8 +12,8 @@ import java.time.LocalDateTime
 abstract class BaseTimeEntity {
 
   @get:CreatedDate
-  abstract val createdAt: LocalDateTime
+  open val createdAt: LocalDateTime = LocalDateTime.now()
 
-  @get:LastModifiedDate
-  abstract val updatedAt: LocalDateTime
+  @LastModifiedDate
+  open var updatedAt: LocalDateTime = LocalDateTime.now()
 }

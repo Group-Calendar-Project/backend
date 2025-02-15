@@ -10,8 +10,6 @@ import java.time.LocalTime
 @Document("group_promises")
 @Entity
 data class GroupPromiseDocument(
-  @Id
-  val id: String?,
   val title: String,
   val groupId: String,
   val status: String, // TODO : ENUM
@@ -20,6 +18,6 @@ data class GroupPromiseDocument(
   val candidateEndTime: LocalTime,
   val deadline: LocalDateTime,
   val hasTimer: Boolean,
-  override val createdAt: LocalDateTime,
-  override val updatedAt: LocalDateTime,
+  @Id
+  val id: String? = null,
 ): BaseTimeEntity()
