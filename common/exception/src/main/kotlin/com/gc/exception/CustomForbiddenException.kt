@@ -1,6 +1,5 @@
 package com.gc.exception
 
-import common.exception.CustomException
 import org.springframework.http.HttpStatus
 
 class CustomForbiddenException(message: String)

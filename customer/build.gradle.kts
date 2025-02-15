@@ -24,7 +24,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":common:exception"))
     implementation(project(":common:logging"))
-    implementation(project(":common:monitoring"))
 //    implementation(project(":common:security"))
     implementation(project(":storage:document"))
 

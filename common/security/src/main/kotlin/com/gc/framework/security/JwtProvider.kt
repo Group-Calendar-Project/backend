@@ -1,6 +1,6 @@
 package com.gc.framework.security
 
-import io.github.oshai.kotlinlogging.KotlinLogging
+import com.gc.utils.logger
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component
 import java.time.Duration
 import java.util.*
 import javax.crypto.SecretKey
-
-private val logger = KotlinLogging.logger {}
 
 @Component
 class JwtProvider(

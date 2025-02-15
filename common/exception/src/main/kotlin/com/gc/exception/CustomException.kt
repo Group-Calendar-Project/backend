@@ -1,7 +1,6 @@
-package common.exception
+package com.gc.exception
 
 import org.springframework.http.HttpStatus
-
 
 open class CustomException(
   val httpStatusCode: Int,

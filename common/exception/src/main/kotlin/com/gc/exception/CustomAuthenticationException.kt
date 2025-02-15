@@ -1,4 +1,4 @@
-package common.exception
+package com.gc.exception
 
 import org.springframework.http.HttpStatus
 
