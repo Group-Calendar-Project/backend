@@ -1,4 +1,4 @@
-package com.gc.adapter.out.infra.persistence.member
+package com.gc.document.member
 
 import org.springframework.data.mongodb.repository.MongoRepository
 

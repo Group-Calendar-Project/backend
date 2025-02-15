@@ -1,6 +1,6 @@
 package com.gc.framework.security
 
-import com.gc.adapter.out.infra.persistence.member.MemberDocument
+import com.gc.document.member.MemberDocument
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 

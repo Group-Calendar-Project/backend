@@ -1,6 +1,6 @@
 package com.gc.api.customer.adapter.out.persistence
 
-import com.gc.adapter.out.infra.persistence.member.MemberDocument
+import com.gc.document.member.MemberDocument
 import com.gc.adapter.out.infra.persistence.member.QMemberDocument
 import com.gc.adapter.out.infra.persistence.member.QMemberDocument.memberDocument
 import org.springframework.data.mongodb.core.MongoOperations
