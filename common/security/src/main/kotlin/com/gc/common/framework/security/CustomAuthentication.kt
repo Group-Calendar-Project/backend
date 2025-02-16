@@ -1,4 +1,4 @@
-package com.gc.framework.security
+package com.gc.common.framework.security
 
 import com.gc.document.member.MemberDocument
 import org.springframework.security.core.Authentication
@@ -8,7 +8,7 @@ class CustomAuthentication(
   val memberDocument: MemberDocument
 ) :Authentication{
   override fun getName(): String {
-    return memberDocument.userName
+    return memberDocument.nickname
   }
 
   override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
