@@ -105,9 +105,6 @@ class ServerLoggingInterceptor(
   }
 
   fun getLogBodyContent(contentType: String?, any: Any?, bytes: ByteArray?): String {
-
-    println("any = ${objectMapper.writeValueAsString(any)}")
-
     return try {
       when {
         isJsonContentType(contentType) -> any?.let {

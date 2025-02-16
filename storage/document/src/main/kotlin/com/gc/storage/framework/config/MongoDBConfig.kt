@@ -1,4 +1,4 @@
-package com.gc.storage.config
+package com.gc.storage.framework.config
 
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
@@ -62,7 +62,7 @@ class MongoDBConfig: AbstractMongoClientConfiguration() {
     return "calendar_db"
   }
 
-  // Mongo DateTime Format
+//   Mongo DateTime Format
   @Bean
   fun mongoAuditingDateTimeProvider(): DateTimeProvider {
     return DateTimeProvider {
