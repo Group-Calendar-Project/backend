@@ -5,7 +5,6 @@ import com.gc.utils.logger
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.stereotype.Component
-import org.springframework.util.StreamUtils
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
@@ -89,9 +88,7 @@ class ServerLoggingInterceptor(
 
   // HttpResponse
   fun getHttpResponseBytes(response: HttpServletResponse): ByteArray? =
-    (response as? ContentCachingResponseWrapper)?.let {
-      StreamUtils.copyToByteArray(it.contentInputStream)
-  }
+    (response as? ContentCachingResponseWrapper)?.contentAsByteArray
 
   fun getHttpResponseObject(responseBytes: ByteArray?, handler: Any): Any? {
     return try {
@@ -108,6 +105,8 @@ class ServerLoggingInterceptor(
   }
 
   fun getLogBodyContent(contentType: String?, any: Any?, bytes: ByteArray?): String {
+
+    println("any = ${objectMapper.writeValueAsString(any)}")
 
     return try {
       when {

@@ -1,10 +1,12 @@
 package com.gc.api.customer.adapter.`in`.rest.api
 
+import com.gc.api.customer.adapter.`in`.rest.dto.MemberRequest
 import com.gc.api.customer.adapter.out.persistence.GetMemberRepository
 import com.gc.document.member.MemberDocument
 import com.gc.document.member.MemberMongoRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -14,7 +16,9 @@ class MemberController(
 ) {
 
   @PostMapping
-  fun saveMember(): String {
+  fun saveMember(
+    @RequestBody memberRequest: MemberRequest
+  ): String {
     val newMember = MemberDocument(
       nickname = "kylo",
       email = "kylo@kakao.com",
