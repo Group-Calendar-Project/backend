@@ -1,4 +1,4 @@
-package com.gc.framework.config
+package com.gc.storage.config
 
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings

@@ -1,6 +1,6 @@
 package com.gc.common.framework.security
 
-import com.gc.document.member.MemberDocument
+import com.gc.storage.document.member.MemberDocument
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 

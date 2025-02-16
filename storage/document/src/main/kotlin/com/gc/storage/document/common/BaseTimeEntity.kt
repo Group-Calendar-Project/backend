@@ -1,4 +1,4 @@
-package com.gc.document.common
+package com.gc.storage.document.common
 
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.MappedSuperclass

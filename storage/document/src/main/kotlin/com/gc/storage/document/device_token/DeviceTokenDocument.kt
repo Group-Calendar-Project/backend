@@ -1,6 +1,6 @@
-package com.gc.document.device_token
+package com.gc.storage.document.device_token
 
-import com.gc.document.common.BaseTimeEntity
+import com.gc.storage.document.common.BaseTimeEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import org.springframework.data.mongodb.core.mapping.Document

@@ -1,4 +1,4 @@
-package com.gc.document.member
+package com.gc.storage.document.member
 
 import org.springframework.data.mongodb.repository.MongoRepository
 

@@ -1,8 +1,8 @@
 package com.gc.api.customer.adapter.out.persistence
 
-import com.gc.document.member.MemberDocument
-import com.gc.document.member.QMemberDocument
-import com.gc.document.member.QMemberDocument.memberDocument
+import com.gc.storage.document.member.MemberDocument
+import com.gc.storage.document.member.QMemberDocument
+import com.gc.storage.document.member.QMemberDocument.memberDocument
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository

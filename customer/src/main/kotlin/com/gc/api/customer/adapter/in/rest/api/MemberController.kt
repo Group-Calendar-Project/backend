@@ -2,8 +2,8 @@ package com.gc.api.customer.adapter.`in`.rest.api
 
 import com.gc.api.customer.adapter.`in`.rest.dto.MemberRequest
 import com.gc.api.customer.adapter.out.persistence.GetMemberRepository
-import com.gc.document.member.MemberDocument
-import com.gc.document.member.MemberMongoRepository
+import com.gc.storage.document.member.MemberDocument
+import com.gc.storage.document.member.MemberMongoRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
