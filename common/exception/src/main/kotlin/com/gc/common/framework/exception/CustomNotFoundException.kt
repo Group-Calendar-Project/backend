@@ -1,6 +1,6 @@
 package common.exception
 
-import com.gc.exception.CustomException
+import com.gc.common.framework.exception.CustomException
 import org.springframework.http.HttpStatus
 
 class CustomNotFoundException(message: String)

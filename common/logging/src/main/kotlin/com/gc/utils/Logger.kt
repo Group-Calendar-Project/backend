@@ -1,3 +1,5 @@
 package com.gc.utils
 
-val logger = io.github.oshai.kotlinlogging.KotlinLogging.logger {}
+import io.github.oshai.kotlinlogging.KotlinLogging
+
+val logger = KotlinLogging.logger {}

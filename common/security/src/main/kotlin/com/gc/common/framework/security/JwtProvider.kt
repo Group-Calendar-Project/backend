@@ -1,4 +1,4 @@
-package com.gc.framework.security
+package com.gc.common.framework.security
 
 import com.gc.utils.logger
 import io.jsonwebtoken.*
