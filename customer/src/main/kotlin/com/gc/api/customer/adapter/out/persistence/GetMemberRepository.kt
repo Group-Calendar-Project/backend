@@ -19,4 +19,11 @@ class GetMemberRepository(
       .fetch()
 
   }
+
+  fun getMemberByEmailAndOauth(email: String, oauthProvider: String): MemberDocument? {
+    return from(memberDocument)
+      .where(memberDocument.email.eq(email)
+        .and(memberDocument.oauthProvider.eq(oauthProvider)))
+      .fetchOne()
+  }
 }
