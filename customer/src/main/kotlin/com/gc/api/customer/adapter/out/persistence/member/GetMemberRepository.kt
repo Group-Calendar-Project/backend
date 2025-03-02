@@ -1,4 +1,4 @@
-package com.gc.api.customer.adapter.out.persistence
+package com.gc.api.customer.adapter.out.persistence.member
 
 import com.gc.storage.document.member.MemberDocument
 import com.gc.storage.document.member.QMemberDocument
@@ -14,7 +14,7 @@ class GetMemberRepository(
 
   fun getMemberByUserName(): List<MemberDocument> {
 
-    return from(QMemberDocument.memberDocument)
+    return from(memberDocument)
       .where(memberDocument.nickname.eq("kylo"))
       .fetch()
 
