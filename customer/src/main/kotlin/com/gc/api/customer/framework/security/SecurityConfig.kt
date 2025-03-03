@@ -24,8 +24,9 @@ class SecurityConfig(
       .formLogin { it.disable() }
       .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
       .authorizeHttpRequests {
-        it.requestMatchers("/login/**").permitAll()
-          .requestMatchers("/graphql/**")
+        it
+        .requestMatchers("/api/login/**", "/graphiql/**").permitAll()
+          .requestMatchers("/graphql")
           .hasAnyAuthority(CustomAuthority.MEMBER.authority, CustomAuthority.ADMIN.authority)
           .anyRequest()
           .permitAll()

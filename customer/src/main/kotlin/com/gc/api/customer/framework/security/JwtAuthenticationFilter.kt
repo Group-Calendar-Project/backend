@@ -48,12 +48,10 @@ class JwtAuthenticationFilter(
 
   private val WHITE_URL_LIST = arrayOf(
     "/api/login/**", "/v3/api-docs/**", "/swagger-resources/**",
-    "/swagger-ui/**"
-  )
+    "/swagger-ui/**", "/graphiql/**")
 
   private fun isPublicUrl(request: HttpServletRequest): Boolean {
     val requestURL = request.requestURI
-    println(requestURL)
     return WHITE_URL_LIST.any { pattern -> pathMatcher.match(pattern, requestURL) }
   }
 

@@ -24,12 +24,16 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":common:exception"))
     implementation(project(":common:logging"))
-//    implementation(project(":common:security"))
     implementation(project(":storage:document"))
 
     // spring web
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    // graphql
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+//    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:14.0.0")
+    testImplementation("org.springframework.graphql:spring-graphql-test")
 
     // db
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")

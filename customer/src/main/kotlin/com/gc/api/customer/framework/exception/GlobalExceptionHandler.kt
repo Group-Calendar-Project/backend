@@ -3,9 +3,10 @@ package com.gc.api.customer.framework.exception
 import com.gc.adapter.`in`.response.ResponseData
 import com.gc.common.framework.exception.CustomBadRequestException
 import com.gc.common.utils.logger
-import org.apache.tomcat.websocket.AuthenticationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.AccessDeniedException
+import org.springframework.security.core.AuthenticationException
 import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
