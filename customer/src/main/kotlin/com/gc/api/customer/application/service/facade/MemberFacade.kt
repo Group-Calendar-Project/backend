@@ -4,13 +4,13 @@ import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthP
 import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.KakaoProfile
 import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverProfile
 import com.gc.api.customer.domain.model.OauthProvider
+import com.gc.api.customer.domain.model.member.Member
 import com.gc.api.customer.domain.service.member.MemberCommandService
 import com.gc.api.customer.domain.service.member.MemberQueryService
 import com.gc.api.customer.framework.security.CustomAuthority
 import com.gc.api.customer.framework.security.JwtProvider
 import com.gc.api.customer.framework.security.TokenDto
 import com.gc.common.framework.exception.CustomBadRequestException
-import com.gc.storage.document.member.MemberDocument
 import org.springframework.stereotype.Service
 
 @Service
@@ -36,11 +36,11 @@ class MemberFacade(
 
   }
 
-  private fun generateToken(member: MemberDocument): TokenDto {
+  private fun generateToken(member: Member): TokenDto {
     val authority = CustomAuthority.getAuthority(member.isAdmin)
     return TokenDto(
-      jwtProvider.generateAccessToken(member.email, authority, member.oauthProvider),
-      jwtProvider.generateRefreshToken(member.email, authority, member.oauthProvider)
+      jwtProvider.generateAccessToken(member.email, authority, member.oauthProvider.name),
+      jwtProvider.generateRefreshToken(member.email, authority, member.oauthProvider.name)
     )
   }
 }
