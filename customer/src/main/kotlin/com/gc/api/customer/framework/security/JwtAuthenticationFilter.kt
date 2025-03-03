@@ -38,11 +38,10 @@ class JwtAuthenticationFilter(
 
   private fun resolveToken(request: HttpServletRequest): TokenDto? {
     val bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION)
-    val refreshToken = request.getHeader(JwtConstant.REFESH_TOKEN)
-    bearerToken.substring(JwtConstant.BEARER.length)
 
     return bearerToken?.let {
       val accessToken = bearerToken.substring(JwtConstant.BEARER.length)
+      val refreshToken = request.getHeader(JwtConstant.REFESH_TOKEN)
       TokenDto(accessToken, refreshToken)
     }
   }

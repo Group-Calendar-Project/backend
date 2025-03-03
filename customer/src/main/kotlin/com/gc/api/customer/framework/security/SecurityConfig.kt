@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 class SecurityConfig(
   val jwtAuthenticationFilter: JwtAuthenticationFilter,
+  val authenticationEntryPoint: AuthenticationEntryPoint,
+  val forbiddenAuthorityHandler: ForbiddenAuthorityHandler,
 ) {
 
   @Bean
@@ -28,8 +30,11 @@ class SecurityConfig(
           .anyRequest()
           .permitAll()
       }
-      .addFilterBefore(
-        jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+      .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+      .exceptionHandling {
+        it.authenticationEntryPoint(authenticationEntryPoint)
+          .accessDeniedHandler(forbiddenAuthorityHandler)
+      }
       .build()
   }
 }
