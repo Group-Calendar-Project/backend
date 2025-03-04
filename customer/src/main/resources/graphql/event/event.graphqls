@@ -1,15 +1,8 @@
 scalar Date
 scalar Time
 
-enum Alarm {
-    NONE
-    D_DAY
-    D_7DAY
-    BEFORE_10
-    BEFORE_30
-    BEFORE_60
-}
 
+### EVENT
 type Event {
     id: ID!
     title: String!
@@ -21,15 +14,36 @@ type Event {
     member: Member
 }
 
+enum Alarm {
+    NONE
+    D_DAY
+    D_7DAY
+    BEFORE_10
+    BEFORE_30
+    BEFORE_60
+}
+
+input PostEventRequest {
+    title: String!
+    date: Date!
+    startTime: Time
+    endTime: Time
+    isAllDay: Boolean
+    alarm: Alarm
+    labelId: String
+}
+
+
+### Recurrence_Event
+type RecurrenceEvent {
+    id: ID
+    event: Event
+    frequency: Frequency
+}
+
 enum Frequency {
     DAILY
     WEEKLY
     MONTHLY
     YEARLY
-}
-
-type RecurrenceEvent {
-    id: ID
-    event: Event
-    frequency: Frequency
 }
