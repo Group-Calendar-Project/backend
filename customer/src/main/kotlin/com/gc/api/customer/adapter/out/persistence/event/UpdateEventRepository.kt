@@ -25,10 +25,12 @@ class UpdateEventRepository(
     request.startTime?.let { update.set("startTime", it) }
     request.endTime?.let { update.set("endTime", it) }
     request.isAllDay?.let { update.set("isAllDay", it) }
-    request.alarm?.let { update.set("alarm", it.name) }
+    request.alarm?.let { update.set("alarm", it) }
     request.labelId?.let { update.set("labelId", it) }
-    request.frequency?.let { update.set("frequency", it.name) }
+    request.frequency?.let { update.set("frequency", it) }
 
-    operations.updateFirst(query, update, EventDocument::class.java)
+    if (update.updateObject.keys.isNotEmpty()) {
+      operations.updateFirst(query, update, EventDocument::class.java)
+    }
   }
 }

@@ -25,9 +25,9 @@ data class UpdateEventRequest(
       startTime = this.startTime,
       endTime = this.endTime,
       isAllDay = this.isAllDay,
-      alarm = this.alarm,
+      alarm = this.alarm?.name,
       labelId = this.labelId,
-      frequency = this.frequency
+      frequency = this.frequency?.name,
     )
   }
 }
