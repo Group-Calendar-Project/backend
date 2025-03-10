@@ -1,6 +1,0 @@
-type Mutation {
-    # EVENT
-    saveEvent(postEventRequest: PostEventRequest): ID
-    updateEvent(eventId: ID!, updateEventRequest: UpdateEventRequest!): ID
-    deleteEvent(eventId: ID!): ID
-}

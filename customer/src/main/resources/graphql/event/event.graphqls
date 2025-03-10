@@ -1,6 +1,11 @@
 scalar Date
 scalar Time
 
+extend type Mutation {
+    saveEvent(postEventRequest: PostEventRequest): ID
+    updateEvent(eventId: ID!, updateEventRequest: UpdateEventRequest!): ID
+    deleteEvent(eventId: ID!): ID
+}
 
 ### EVENT
 type Event {
