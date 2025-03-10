@@ -31,4 +31,11 @@ class EventGraphQLController(
     eventCommandService.updateEvent(updateEventRequest.toServiceRequest(eventId))
     return eventId
   }
+
+  @MutationMapping
+  @RequireAuth
+  fun deleteEvent(@Argument eventId: String): String {
+    eventCommandService.deleteEvent(eventId)
+    return eventId
+  }
 }
