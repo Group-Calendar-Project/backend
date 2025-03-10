@@ -33,15 +33,19 @@ input PostEventRequest {
     labelId: String
 }
 
-
-### Recurrence_Event
-type RecurrenceEvent {
-    id: ID
-    event: Event
+input UpdateEventRequest {
+    title: String
+    date: Date
+    startTime: Time
+    endTime: Time
+    isAllDay: Boolean
+    alarm: Alarm
+    labelId: String
     frequency: Frequency
 }
 
 enum Frequency {
+    NONE
     DAILY
     WEEKLY
     MONTHLY

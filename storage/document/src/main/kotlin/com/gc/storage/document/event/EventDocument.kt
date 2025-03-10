@@ -17,6 +17,7 @@ data class EventDocument(
   val isAllDay: Boolean,
   val labelId: String,
   val alarm: String,
+  val frequency: String,
   val memberId: String,
   @Id
   val id: String? = null,
