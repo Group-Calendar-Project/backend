@@ -1,3 +1,4 @@
 type Mutation {
     saveEvent(postEventRequest: PostEventRequest): ID
+    updateEvent(eventId: ID!, updateEventRequest: UpdateEventRequest!): ID
 }
