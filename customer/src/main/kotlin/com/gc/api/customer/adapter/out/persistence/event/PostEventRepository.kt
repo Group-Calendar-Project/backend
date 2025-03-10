@@ -19,9 +19,8 @@ class PostEventRepository(
   private fun createEvent(request: PostEventDto): EventDocument {
     return EventDocument(
       title = request.title,
-      date = request.date,
-      startTime = request.startTime,
-      endTime = request.endTime,
+      startDateTime = request.startDateTime,
+      endDateTime = request.endDateTime,
       isAllDay = request.isAllDay,
       labelId = request.labelId,
       alarm = request.alarm.name,

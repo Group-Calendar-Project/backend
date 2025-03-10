@@ -5,6 +5,7 @@ import com.gc.api.customer.domain.model.EventAlarm
 import com.gc.api.customer.domain.model.event.EventFrequency
 import com.gc.api.customer.domain.model.member.Member
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
 data class PostEventRequest(
@@ -19,11 +20,21 @@ data class PostEventRequest(
 ) {
 
   fun toEventServiceRequest(eventRequest: PostEventRequest, member: Member): PostEventDto {
+
+    val eventStartDateTime = if (eventRequest.isAllDay)
+      eventRequest.date.atTime(LocalTime.MIN)
+    else
+      LocalDateTime.of(eventRequest.date, eventRequest.startTime)
+
+    val eventEndDateTime = if (eventRequest.isAllDay)
+      eventRequest.date.atTime(LocalTime.MAX)
+    else
+      LocalDateTime.of(eventRequest.date, eventRequest.endTime)
+
     return PostEventDto(
       eventRequest.title,
-      eventRequest.date,
-      eventRequest.startTime,
-      eventRequest.endTime,
+      eventStartDateTime,
+      eventEndDateTime,
       eventRequest.isAllDay,
       eventRequest.alarm?:EventAlarm.NONE,
       eventRequest.labelId,
