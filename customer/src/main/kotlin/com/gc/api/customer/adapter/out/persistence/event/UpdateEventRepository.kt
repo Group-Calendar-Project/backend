@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
 import org.springframework.data.mongodb.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
 
 @Repository
 class UpdateEventRepository(
@@ -30,6 +31,7 @@ class UpdateEventRepository(
     request.frequency?.let { update.set("frequency", it) }
 
     if (update.updateObject.keys.isNotEmpty()) {
+      update.set("updatedAt", LocalDateTime.now())
       operations.updateFirst(query, update, EventDocument::class.java)
     }
   }
