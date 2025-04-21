@@ -1,4 +1,4 @@
-package com.gc.api.customer.framework.config
+package com.gc.api.customer.framework.config.graphql
 
 import graphql.language.StringValue
 import graphql.schema.Coercing

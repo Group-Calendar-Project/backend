@@ -1,4 +1,4 @@
-package com.gc.api.customer.framework.config
+package com.gc.api.customer.framework.config.graphql
 
 import graphql.schema.GraphQLScalarType
 import org.springframework.context.annotation.Bean
@@ -16,6 +16,18 @@ class GraphQLConfig {
         .name("LocalDateTime")
         .coercing(LocalDateTimeScalar)
         .build()
+      )
+    }
+  }
+
+  @Bean
+  fun localDateScalar(): RuntimeWiringConfigurer {
+    return RuntimeWiringConfigurer { wiringBuilder ->
+      wiringBuilder.scalar(
+        GraphQLScalarType.newScalar()
+          .name("LocalDate")
+          .coercing(LocalDateScalar)
+          .build()
       )
     }
   }
