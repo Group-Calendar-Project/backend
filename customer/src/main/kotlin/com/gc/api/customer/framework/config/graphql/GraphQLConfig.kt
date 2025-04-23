@@ -32,31 +32,4 @@ class GraphQLConfig {
     }
   }
 
-//  @Bean
-//  fun dateScalar(): RuntimeWiringConfigurer {
-//    return RuntimeWiringConfigurer { wiringBuilder: RuntimeWiring.Builder ->
-//      wiringBuilder.scalar(
-//        ExtendedScalars.Date
-//      )
-//    }
-//  }
-//
-//  @Bean
-//  fun dateTimeScalar(): RuntimeWiringConfigurer {
-//    return RuntimeWiringConfigurer { wiringBuilder: RuntimeWiring.Builder ->
-//      wiringBuilder.scalar(
-//        ExtendedScalars.DateTime
-//      )
-//    }
-//  }
-
-//  @Bean
-//  fun timeScalar(): RuntimeWiringConfigurer {
-//    return RuntimeWiringConfigurer { wiringBuilder: RuntimeWiring.Builder ->
-//      wiringBuilder.scalar(
-//        ExtendedScalars.Time
-//      )
-//    }
-//  }
-
 }
