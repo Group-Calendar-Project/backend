@@ -20,8 +20,8 @@ data class CalendarResponse(
             return CalendarResponse(
                 id = calendarEvent.eventId,
                 title = calendarEvent.title,
-                startDate = calendarEvent.startDate,
-                endDate = calendarEvent.endDate,
+                startDate = calendarEvent.eventPeriod.startDateTime.toLocalDate(),
+                endDate = calendarEvent.eventPeriod.endDateTime.toLocalDate(),
                 labelColor = calendarEvent.labelColor
             )
         }

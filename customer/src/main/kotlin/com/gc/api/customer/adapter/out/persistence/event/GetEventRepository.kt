@@ -5,6 +5,7 @@ import com.gc.api.customer.application.service.dto.event.GetCalendarDto
 import com.gc.api.customer.domain.model.EventAlarm
 import com.gc.api.customer.domain.model.event.Event
 import com.gc.api.customer.domain.model.event.EventFrequency
+import com.gc.api.customer.domain.model.event.EventPeriod
 import com.gc.storage.document.event.EventDocument
 import com.gc.storage.document.event.EventMongoRepository
 import com.gc.storage.document.event.QEventDocument.eventDocument
@@ -49,8 +50,7 @@ class GetEventRepository(
     return Event(
       id = document.id!!,
       title = document.title,
-      startDateTime = document.startDateTime,
-      endDateTime = document.endDateTime,
+      eventPeriod = EventPeriod(document.startDateTime, document.endDateTime),
       isAllDay = document.isAllDay,
       alarm = EventAlarm.from(document.alarm),
       frequency = EventFrequency.from(document.frequency),

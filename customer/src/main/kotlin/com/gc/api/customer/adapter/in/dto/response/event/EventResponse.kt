@@ -23,8 +23,8 @@ data class EventResponse(
             return EventResponse(
                 event.id,
                 event.title,
-                event.startDateTime,
-                event.endDateTime,
+                event.eventPeriod.startDateTime,
+                event.eventPeriod.endDateTime,
                 event.isAllDay,
                 event.alarm,
                 event.frequency,
