@@ -4,7 +4,7 @@ import com.gc.api.customer.domain.model.member.Member
 import com.gc.api.customer.framework.annotation.RequestInfo
 import com.gc.api.customer.framework.annotation.RequireAuth
 import com.gc.api.customer.framework.security.CustomAuthentication
-import com.gc.common.framework.exception.CustomAuthenticationException
+import com.gc.common.exception.CustomAuthenticationException
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.core.context.SecurityContextHolder

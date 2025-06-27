@@ -1,6 +1,6 @@
 package com.gc.api.customer.framework.config.feign
 
-import com.gc.common.framework.exception.CustomAuthenticationException
+import com.gc.common.exception.CustomAuthenticationException
 import common.exception.CustomNotFoundException
 import feign.FeignException
 import feign.Response

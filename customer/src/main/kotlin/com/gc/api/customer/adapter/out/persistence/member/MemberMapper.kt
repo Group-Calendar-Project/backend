@@ -1,10 +1,10 @@
 package com.gc.api.customer.adapter.out.persistence.member
 
-import com.gc.api.customer.adapter.out.external.dto.response.social_login.OAuthProfile
-import com.gc.api.customer.adapter.out.external.dto.response.social_login.kakao.KakaoProfile
-import com.gc.api.customer.adapter.out.external.dto.response.social_login.naver.NaverProfile
+import com.gc.api.customer.adapter.out.external.social_login.dto.OAuthProfile
+import com.gc.api.customer.adapter.out.external.social_login.dto.kakao.KakaoProfile
+import com.gc.api.customer.adapter.out.external.social_login.dto.naver.NaverProfile
 import com.gc.api.customer.domain.model.OauthProvider
-import com.gc.common.framework.exception.CustomBadRequestException
+import com.gc.common.exception.CustomBadRequestException
 import com.gc.storage.document.member.MemberDocument
 
 class MemberMapper {

@@ -1,7 +1,7 @@
 package com.gc.api.customer.framework.exception
 
-import com.gc.adapter.`in`.response.ResponseData
-import com.gc.common.framework.exception.CustomBadRequestException
+import com.gc.api.customer.adapter.`in`.dto.response.ResponseData
+import com.gc.common.exception.CustomBadRequestException
 import com.gc.common.utils.logger
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -43,7 +43,8 @@ class GlobalExceptionHandler {
 
     val fieldError: FieldError? = Objects.requireNonNull(e.bindingResult.fieldError)
     return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-      .body(ResponseData.error<Any>("COMMON400",
+      .body(
+        ResponseData.error<Any>("COMMON400",
         """
           Field ${fieldError?.field} 에서 에러 발생
           입력한 값: ${fieldError?.rejectedValue}
