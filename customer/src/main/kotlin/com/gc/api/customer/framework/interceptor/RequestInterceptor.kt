@@ -14,28 +14,29 @@ import org.springframework.web.servlet.HandlerInterceptor
 
 @Component
 class RequestInterceptor(
-  private val requestInfo: RequestInfo
-): HandlerInterceptor {
+    private val requestInfo: RequestInfo
+) : HandlerInterceptor {
 
-  override fun preHandle(
-    request: HttpServletRequest,
-    response: HttpServletResponse,
-    handler: Any
-  ): Boolean {
-    val member = getAuthentication()
+    override fun preHandle(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        handler: Any
+    ): Boolean {
+        val member = getAuthentication()
 
-    if (handler is HandlerMethod) {
-      if (handler.hasMethodAnnotation(RequireAuth::class.java) && member == null) {
-        throw CustomAuthenticationException("로그인이 필요합니다")
-      }
+        (handler as? HandlerMethod)?.let { handlerMethod ->
+            if (handlerMethod.hasMethodAnnotation(RequireAuth::class.java) && member == null) {
+                throw CustomAuthenticationException("로그인이 필요합니다")
+            }
+        }
+        member?.let { requestInfo.setRequestMember(it) }
+
+        return true
     }
-    member?.let { requestInfo.setRequestMember(member) }
 
-    return true
-  }
-
-  fun getAuthentication(): Member? {
-    val authentication = SecurityContextHolder.getContext().authentication as CustomAuthentication
-    return authentication.member
-  }
+    fun getAuthentication(): Member? {
+        val authentication =
+            SecurityContextHolder.getContext().authentication as CustomAuthentication
+        return authentication.member
+    }
 }

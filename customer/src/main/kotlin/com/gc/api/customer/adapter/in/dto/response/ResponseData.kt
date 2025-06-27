@@ -1,5 +1,8 @@
 package com.gc.api.customer.adapter.`in`.dto.response
 
+import com.fasterxml.jackson.annotation.JsonInclude
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ResponseData<T>(
     val code: String,
     val message: String? = null,

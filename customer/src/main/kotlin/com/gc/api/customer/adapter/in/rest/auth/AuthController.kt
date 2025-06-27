@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(UrlConstant.LOGIN)
 class AuthController(
-  val authService: AuthService,
-  val memberFacade: MemberFacade,
+    val authService: AuthService,
+    val memberFacade: MemberFacade,
 ) {
 
-  @GetMapping("/kakao")
-  fun kakaoLogin(@RequestParam("code") accessCode: String) : ResponseData<TokenDto> {
-    val kakaoProfile = authService.kakaoLogin(accessCode)
-    return ResponseData.success(memberFacade.loginOrJoin(kakaoProfile))
-  }
+    @GetMapping("/kakao")
+    fun kakaoLogin(@RequestParam("code") accessCode: String): ResponseData<TokenDto> {
+        val kakaoProfile = authService.kakaoLogin(accessCode)
+        return ResponseData.success(memberFacade.loginOrJoin(kakaoProfile))
+    }
 
-  @GetMapping("/naver")
-  fun naverLogin(@RequestParam("code") accessCode: String) : ResponseData<TokenDto> {
-    val naverProfile = authService.naverLogin(accessCode)
-    return ResponseData.success(memberFacade.loginOrJoin(naverProfile))
-  }
+    @GetMapping("/naver")
+    fun naverLogin(@RequestParam("code") accessCode: String): ResponseData<TokenDto> {
+        val naverProfile = authService.naverLogin(accessCode)
+        return ResponseData.success(memberFacade.loginOrJoin(naverProfile))
+    }
 }
