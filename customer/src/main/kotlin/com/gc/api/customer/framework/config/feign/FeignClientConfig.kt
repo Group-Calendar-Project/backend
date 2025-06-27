@@ -11,11 +11,6 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class FeignClientConfig {
 
-//  @Bean
-//  fun feignLoggerLevel(): Logger.Level {
-//    return Logger.Level.FULL
-//  }
-
   @Bean
   fun errorDecoder(): ErrorDecoder {
     return FeignErrorDecoder()

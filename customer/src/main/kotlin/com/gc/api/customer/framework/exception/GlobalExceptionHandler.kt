@@ -2,7 +2,7 @@ package com.gc.api.customer.framework.exception
 
 import com.gc.api.customer.adapter.`in`.dto.response.ResponseData
 import com.gc.common.exception.CustomBadRequestException
-import com.gc.common.utils.logger
+import com.gc.common.logging.logger
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.AccessDeniedException

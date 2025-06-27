@@ -1,7 +1,7 @@
 package com.gc.api.customer.framework.security
 
 import com.gc.api.customer.domain.service.member.MemberQueryService
-import com.gc.common.utils.logger
+import com.gc.common.logging.logger
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
