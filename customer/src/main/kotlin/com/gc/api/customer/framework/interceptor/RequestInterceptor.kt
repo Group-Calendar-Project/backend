@@ -34,9 +34,7 @@ class RequestInterceptor(
         return true
     }
 
-    fun getAuthentication(): Member? {
-        val authentication =
-            SecurityContextHolder.getContext().authentication as CustomAuthentication
-        return authentication.member
-    }
+    fun getAuthentication(): Member? =
+        (SecurityContextHolder.getContext().authentication
+                as? CustomAuthentication)?.member
 }
