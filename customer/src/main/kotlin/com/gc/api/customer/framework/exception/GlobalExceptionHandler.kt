@@ -1,7 +1,7 @@
 package com.gc.api.customer.framework.exception
 
 import com.gc.api.customer.adapter.`in`.dto.response.ResponseData
-import com.gc.common.exception.CustomBadRequestException
+import com.gc.common.exception.CustomException
 import com.gc.common.logging.logger
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -30,11 +30,11 @@ class GlobalExceptionHandler {
       .body(ResponseData.error<Any>("COMMON403", "해당 요청에 대한 권한이 없습니다."))
   }
 
-  @ExceptionHandler(CustomBadRequestException::class)
-  fun badRequestExceptionHandler(e: CustomBadRequestException): ResponseEntity<Any> {
-    logger.info { "CustomBadRequestException $e" }
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-      .body(ResponseData.error<Any>("COMMON400", e.message))
+  @ExceptionHandler(CustomException::class)
+  fun badRequestExceptionHandler(e: CustomException): ResponseEntity<Any> {
+    logger.info { "CustomException $e" }
+    return ResponseEntity.status(e.httpStatusCode)
+      .body(ResponseData.error<Any>(e.code, e.message))
   }
 
   @ExceptionHandler(MethodArgumentNotValidException::class)

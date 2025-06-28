@@ -7,44 +7,50 @@ import com.gc.storage.document.label.DefaultLabelMongoRepository
 import com.gc.storage.document.label.MemberLabelDocument
 import com.gc.storage.document.label.MemberLabelMongoRepository
 import common.exception.CustomNotFoundException
-import org.springframework.data.mongodb.core.MongoOperations
-import org.springframework.data.mongodb.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository
 
 @Repository
 class GetLabelRepository(
-  private val defaultLabelMongoRepository: DefaultLabelMongoRepository,
-  private val memberLabelMongoRepository: MemberLabelMongoRepository,
-  val operations: MongoOperations,
-): GetMemberLabelPort, QuerydslRepositorySupport(operations) {
+    private val defaultLabelMongoRepository: DefaultLabelMongoRepository,
+    private val memberLabelMongoRepository: MemberLabelMongoRepository,
+) : GetMemberLabelPort {
 
-  override fun getDefaultLabels(): List<EventLabel> {
-    val results = defaultLabelMongoRepository.findAll()
-    return results.stream()
-      .map { fromDefaultLabel(it) }
-      .toList()
-  }
-
-  override fun getCustomLabels(memberId: String): List<EventLabel> {
-    val results = memberLabelMongoRepository.findAllByMemberId(memberId)
-    return results.stream()
-      .map { fromCustomLabel(it) }
-      .toList()
-  }
-
-  override fun getLabel(memberId: String, labelId: String): EventLabel {
-    return memberLabelMongoRepository.findByMemberIdAndLabelId(memberId, labelId)?.let {
-      fromCustomLabel(it) }
-      ?: defaultLabelMongoRepository.findById(labelId)
-        .orElseThrow{ CustomNotFoundException("라벨을 찾을 수 없습니다.") }
-        .let { fromDefaultLabel(it) }
+    override fun getDefaultLabels(): List<EventLabel> {
+        val results = defaultLabelMongoRepository.findAll()
+        return results.stream()
+            .map { fromDefaultLabel(it) }
+            .toList()
     }
 
-  private fun fromDefaultLabel(defaultLabelDocument: DefaultLabelDocument): EventLabel {
-    return EventLabel(defaultLabelDocument.id!!, defaultLabelDocument.label, defaultLabelDocument.color)
-  }
+    override fun getCustomLabels(memberId: String): List<EventLabel> {
+        val results = memberLabelMongoRepository.findAllByMemberId(memberId)
+        return results.stream()
+            .map { fromCustomLabel(it) }
+            .toList()
+    }
 
-  private fun fromCustomLabel(memberLabelDocument: MemberLabelDocument): EventLabel {
-    return EventLabel(memberLabelDocument.labelId, memberLabelDocument.label, memberLabelDocument.color)
-  }
+    override fun getLabel(memberId: String, labelId: String): EventLabel {
+        return memberLabelMongoRepository.findByMemberIdAndLabelId(memberId, labelId)?.let {
+            fromCustomLabel(it)
+        }
+            ?: defaultLabelMongoRepository.findById(labelId)
+                .orElseThrow { CustomNotFoundException("라벨을 찾을 수 없습니다.") }
+                .let { fromDefaultLabel(it) }
+    }
+
+    private fun fromDefaultLabel(defaultLabelDocument: DefaultLabelDocument): EventLabel {
+        return EventLabel(
+            defaultLabelDocument.id!!,
+            defaultLabelDocument.label,
+            defaultLabelDocument.color
+        )
+    }
+
+    private fun fromCustomLabel(memberLabelDocument: MemberLabelDocument): EventLabel {
+        return EventLabel(
+            memberLabelDocument.labelId,
+            memberLabelDocument.label,
+            memberLabelDocument.color
+        )
+    }
 }

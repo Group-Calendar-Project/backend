@@ -26,13 +26,7 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/api/login/**", "/graphiql/**").permitAll()
-                    .requestMatchers("/graphql", "/api/**")
-                    .hasAnyAuthority(
-                        CustomAuthority.MEMBER.authority,
-                        CustomAuthority.ADMIN.authority
-                    )
-                    .anyRequest()
-                    .permitAll()
+                    .anyRequest().authenticated()
             }
             .addFilterBefore(
                 jwtAuthenticationFilter,

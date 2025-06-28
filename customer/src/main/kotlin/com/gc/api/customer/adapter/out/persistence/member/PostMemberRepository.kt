@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class PostMemberRepository(
-  val memberMongoRepository: MemberMongoRepository,
-): PostMemberPort {
+    val memberMongoRepository: MemberMongoRepository,
+) : PostMemberPort {
 
-  override fun save(oauthProfile: OAuthProfile): Member {
-    val newMember = MemberMapper.from(oauthProfile)
-    return Member.from(memberMongoRepository.save(newMember))
-  }
+    override fun save(oauthProfile: OAuthProfile): Member {
+        val newMember = MemberMapper.from(oauthProfile)
+        return Member.from(memberMongoRepository.save(newMember))
+    }
 }
