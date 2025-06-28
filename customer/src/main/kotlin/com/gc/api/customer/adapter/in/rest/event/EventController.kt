@@ -32,7 +32,7 @@ class EventController(
         @RequestParam startDate: LocalDate,
         @RequestParam endDate: LocalDate?,
     ): ResponseData<List<CalendarResponse>> {
-        val getCalenderDto = GetCalendarDto.of(requestInfo.member.id, startDate, endDate)
+        val getCalenderDto = GetCalendarDto.of(requestInfo.member, startDate, endDate)
         val calendarEvents = eventFacade.getCalendar(getCalenderDto)
         return ResponseData.success(CalendarResponse.toCalendarResponse(calendarEvents))
     }

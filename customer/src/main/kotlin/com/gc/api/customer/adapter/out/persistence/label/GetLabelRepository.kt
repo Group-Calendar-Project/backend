@@ -2,6 +2,7 @@ package com.gc.api.customer.adapter.out.persistence.label
 
 import com.gc.api.customer.application.port.out.persistence.label.GetMemberLabelPort
 import com.gc.api.customer.domain.model.label.EventLabel
+import com.gc.api.customer.domain.model.member.Member
 import com.gc.storage.document.label.DefaultLabelDocument
 import com.gc.storage.document.label.DefaultLabelMongoRepository
 import com.gc.storage.document.label.MemberLabelDocument
@@ -22,8 +23,8 @@ class GetLabelRepository(
             .toList()
     }
 
-    override fun getCustomLabels(memberId: String): List<EventLabel> {
-        val results = memberLabelMongoRepository.findAllByMemberId(memberId)
+    override fun getCustomLabels(member: Member): List<EventLabel> {
+        val results = memberLabelMongoRepository.findAllByMemberId(member.id)
         return results.stream()
             .map { fromCustomLabel(it) }
             .toList()

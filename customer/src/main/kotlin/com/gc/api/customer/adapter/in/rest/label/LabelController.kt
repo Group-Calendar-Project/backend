@@ -21,7 +21,7 @@ class LabelController(
     @GetMapping
     @RequireAuth
     fun getLabels(): ResponseData<List<EventLabel>> {
-        return ResponseData.success(labelQueryService.getLabels(requestInfo.member.id))
+        return ResponseData.success(labelQueryService.getLabels(requestInfo.member))
     }
 
     @PatchMapping("/{labelId}")
@@ -30,7 +30,7 @@ class LabelController(
         @RequestBody changeLabelRequest: ChangeLabelRequest,
     ): ResponseData<String> {
         val changeMemberLabelDto =
-            changeLabelRequest.toServiceRequest(changeLabelRequest, labelId, requestInfo.member.id)
+            changeLabelRequest.toServiceRequest(changeLabelRequest, labelId, requestInfo.member)
         labelCommandService.changeMemberLabel(changeMemberLabelDto)
         return ResponseData.success(labelId)
     }
