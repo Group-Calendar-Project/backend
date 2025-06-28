@@ -9,9 +9,9 @@ import com.gc.api.customer.domain.model.event.EventPeriod
 import com.gc.storage.document.event.EventDocument
 import com.gc.storage.document.event.EventMongoRepository
 import com.gc.storage.document.event.QEventDocument.eventDocument
-import common.exception.CustomNotFoundException
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.repository.support.QuerydslRepositorySupport
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 import java.time.LocalTime
 
@@ -21,10 +21,12 @@ class GetEventRepository(
   val operations: MongoOperations,
 ): GetEventPort, QuerydslRepositorySupport(operations) {
 
-  override fun getEvent(eventId: String): Event {
-    return eventMongoRepository.findById(eventId)
-      .orElseThrow { CustomNotFoundException("일정을 찾을 수 없습니다.") }
-      .let { documentToModel(it) }
+  override fun getEvent(eventId: String): Event? {
+    return eventMongoRepository.findByIdOrNull(eventId)
+      ?.let { documentToModel(it) }
+//    return eventMongoRepository.findById(eventId)
+//      .orElseThrow { CustomNotFoundException("일정을 찾을 수 없습니다.") }
+//      .let { documentToModel(it) }
   }
 
   override fun getCalendar(getCalendarDto: GetCalendarDto): List<Event> {

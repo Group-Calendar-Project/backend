@@ -9,35 +9,35 @@ import org.springframework.stereotype.Service
 
 @Service
 class EventFacade(
-  private val eventQueryService: EventQueryService,
-  private val labelQueryService: LabelQueryService,
+    private val eventQueryService: EventQueryService,
+    private val labelQueryService: LabelQueryService,
 ) {
 
-  fun getEvent(eventId: String): EventResponse {
+    fun getEvent(eventId: String): EventResponse {
 
-    // event
-    val event = eventQueryService.getEvent(eventId)
+        // event
+        val event = eventQueryService.getEvent(eventId)
 
-    // label
-    val eventLabel = labelQueryService.getLabel(event.memberId, event.labelId)
+        // label
+        val eventLabel = labelQueryService.getLabel(event.memberId, event.labelId)
 
-    return EventResponse.toEventResponse(event, eventLabel)
-  }
+        return EventResponse.toEventResponse(event, eventLabel)
+    }
 
-  fun getCalendar(getCalendarDto: GetCalendarDto): List<CalendarEvent> {
+    fun getCalendar(getCalendarDto: GetCalendarDto): List<CalendarEvent> {
 
-    // event
-    val events = eventQueryService.getCalendar(getCalendarDto)
-    val labelIds = events.map { it.labelId }.toSet()
+        // event
+        val events = eventQueryService.getCalendar(getCalendarDto)
+        val labelIds = events.map { it.labelId }.toSet()
 
-    // label
-    val allEventLabel = labelQueryService.getAllEventLabel(getCalendarDto.memberId, labelIds)
-    val labelMap = allEventLabel.associateBy { it.id }
+        // label
+        val allEventLabel = labelQueryService.getAllEventLabel(getCalendarDto.memberId, labelIds)
+        val labelMap = allEventLabel.associateBy { it.id }
 
-    // Calendar
-    return events.map { event ->
-      val label = labelMap[event.labelId]
-      CalendarEvent.loadFromDocument(event, label!!)
-    }.toList()
-  }
+        // Calendar
+        return events.map { event ->
+            val label = labelMap[event.labelId]
+            CalendarEvent.loadFromDocument(event, label!!)
+        }.toList()
+    }
 }

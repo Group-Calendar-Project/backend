@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
+import kotlin.reflect.full.hasAnnotation
+import kotlin.reflect.jvm.kotlinFunction
 
 @Component
 class RequestInterceptor(
@@ -25,12 +27,13 @@ class RequestInterceptor(
         val member = getAuthentication()
 
         (handler as? HandlerMethod)?.let { handlerMethod ->
-            if (handlerMethod.hasMethodAnnotation(RequireAuth::class.java) && member == null) {
+            val kFunction = handlerMethod.method.kotlinFunction
+            if (kFunction?.hasAnnotation<RequireAuth>() == true && member == null) {
                 throw CustomAuthenticationException("로그인이 필요합니다")
             }
         }
-        member?.let { requestInfo.setRequestMember(it) }
 
+        member?.let { requestInfo.setRequestMember(it) }
         return true
     }
 
