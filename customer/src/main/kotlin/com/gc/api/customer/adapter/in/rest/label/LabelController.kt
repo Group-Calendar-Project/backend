@@ -1,6 +1,6 @@
 package com.gc.api.customer.adapter.`in`.rest.label
 
-import com.gc.api.customer.adapter.`in`.dto.label.request.ChangeLabelRequest
+import com.gc.api.customer.adapter.`in`.dto.request.label.ChangeLabelRequest
 import com.gc.api.customer.adapter.`in`.dto.response.ResponseData
 import com.gc.api.customer.domain.model.label.EventLabel
 import com.gc.api.customer.domain.service.label.LabelCommandService
@@ -24,11 +24,14 @@ class LabelController(
         return ResponseData.success(labelQueryService.getLabels(requestInfo.member.id))
     }
 
-    @PatchMapping
-    fun changeLabel(@RequestBody changeLabelRequest: ChangeLabelRequest): ResponseData<String> {
+    @PatchMapping("/{labelId}")
+    fun changeLabel(
+        @PathVariable labelId: String,
+        @RequestBody changeLabelRequest: ChangeLabelRequest,
+    ): ResponseData<String> {
         val changeMemberLabelDto =
-            changeLabelRequest.toServiceRequest(changeLabelRequest, requestInfo.member.id)
+            changeLabelRequest.toServiceRequest(changeLabelRequest, labelId, requestInfo.member.id)
         labelCommandService.changeMemberLabel(changeMemberLabelDto)
-        return ResponseData.success(changeLabelRequest.labelId)
+        return ResponseData.success(labelId)
     }
 }

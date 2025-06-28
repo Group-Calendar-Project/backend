@@ -1,6 +1,6 @@
 //package com.gc.api.customer.adapter.`in`.graphql.label
 //
-//import com.gc.api.customer.adapter.`in`.dto.label.request.ChangeLabelRequest
+//import com.gc.api.customer.adapter.`in`.dto.request.label.ChangeLabelRequest
 //import com.gc.api.customer.domain.model.label.EventLabel
 //import com.gc.api.customer.domain.service.label.LabelCommandService
 //import com.gc.api.customer.domain.service.label.LabelQueryService
