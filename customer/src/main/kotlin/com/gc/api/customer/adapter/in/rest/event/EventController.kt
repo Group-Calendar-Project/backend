@@ -1,9 +1,9 @@
 package com.gc.api.customer.adapter.`in`.rest.event
 
-import com.gc.api.customer.adapter.`in`.dto.event.request.PostEventRequest
-import com.gc.api.customer.adapter.`in`.dto.event.request.UpdateEventRequest
-import com.gc.api.customer.adapter.`in`.dto.event.response.CalendarResponse
-import com.gc.api.customer.adapter.`in`.dto.event.response.EventResponse
+import com.gc.api.customer.adapter.`in`.dto.request.event.PostEventRequest
+import com.gc.api.customer.adapter.`in`.dto.request.event.UpdateEventRequest
+import com.gc.api.customer.adapter.`in`.dto.response.event.CalendarResponse
+import com.gc.api.customer.adapter.`in`.dto.response.event.EventResponse
 import com.gc.api.customer.adapter.`in`.dto.response.ResponseData
 import com.gc.api.customer.application.service.dto.event.GetCalendarDto
 import com.gc.api.customer.application.service.facade.event.EventFacade

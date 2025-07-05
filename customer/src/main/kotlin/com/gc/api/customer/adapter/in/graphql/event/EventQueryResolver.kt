@@ -1,7 +1,7 @@
 //package com.gc.api.customer.adapter.`in`.graphql.event
 //
-//import com.gc.api.customer.adapter.`in`.dto.event.response.CalendarResponse
-//import com.gc.api.customer.adapter.`in`.dto.event.response.EventResponse
+//import com.gc.api.customer.adapter.`in`.dto.response.event.CalendarResponse
+//import com.gc.api.customer.adapter.`in`.dto.response.event.EventResponse
 //import com.gc.api.customer.application.service.dto.event.GetCalendarDto
 //import com.gc.api.customer.application.service.facade.event.EventFacade
 //import com.gc.api.customer.framework.annotation.RequestInfo

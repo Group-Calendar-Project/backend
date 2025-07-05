@@ -1,4 +1,4 @@
-package com.gc.api.customer.adapter.`in`.dto.event.response
+package com.gc.api.customer.adapter.`in`.dto.response.event
 
 import com.gc.api.customer.domain.model.event.CalendarEvent
 import java.time.LocalDate

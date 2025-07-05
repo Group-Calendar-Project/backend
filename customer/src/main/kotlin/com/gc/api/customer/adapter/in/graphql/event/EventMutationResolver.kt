@@ -1,7 +1,7 @@
 //package com.gc.api.customer.adapter.`in`.graphql.event
 //
-//import com.gc.api.customer.adapter.`in`.dto.event.request.PostEventRequest
-//import com.gc.api.customer.adapter.`in`.dto.event.request.UpdateEventRequest
+//import com.gc.api.customer.adapter.`in`.dto.request.event.PostEventRequest
+//import com.gc.api.customer.adapter.`in`.dto.request.event.UpdateEventRequest
 //import com.gc.api.customer.domain.service.event.EventCommandService
 //import com.gc.api.customer.framework.annotation.RequestInfo
 //import com.gc.api.customer.framework.annotation.RequireAuth
